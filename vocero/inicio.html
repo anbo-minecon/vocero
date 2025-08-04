@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="icon" href="ico.png" type="image/png" />
+  <link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
+  <a href="index.html" class="botoncito">
+    <img class="arrow-left" src="img/flecha.png" alt="flecha para retroceder" />
+  </a>
+
+  <div class="login-box">
+    <h2>Iniciar Sesión</h2>
+    <form action="database/login.php" method="POST"> <!-- Corrección importante -->
+
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Correo electrónico" required />
+        <i class="fas fa-user"></i>
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="contrasena" placeholder="Contraseña" required />
+        <i class="fas fa-lock"></i>
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" name="recordarme"> Recuérdame</label>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="btn">Entrar</button>
+
+      <div class="register-link">
+        ¿No tienes una cuenta? <a href="cuenta.html">Regístrate</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

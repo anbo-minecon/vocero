@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Proyectos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="projectos.css">
+  <link rel="icon" href="../../ico.png" type="image/png">
+</head>
+<body>
+
+  <aside class="menu">
+    <a href="../index.html" class="botoncito">
+      <img class="arrow-left" src="../img/flecha.png" alt="flecha para retroceder">
+    </a>
+    <img class="logo-blanco" src="../img/logo-blanco.png" alt="logotipo de adanies">
+    <h2>Mis proyectos</h2>
+    <ul class="mini-menu">
+      <li><a href="#invitro"><img class="ico-menu" src="../img/planta.png" alt=""> Invitrosoft</a></li>
+      <li><a href="#table"><img class="ico-menu" src="../img/mueble.png" alt=""> Ditrox-table</a></li>
+      <li><a href="#go"><img class="ico-menu" src="../img/mango.png" alt=""> Voce-GO</a></li>
+      <li><a href="#Repartir"><img class="ico-menu" src="../img/vaca.png" alt=""> Repartir</a></li>
+    </ul>
+  </aside>
+
+   <main class="contenido">
+    <div class="titulo"><h1>Bienvenido</h1></div>
+    
+
+    <div class="bienvenido">
+      <img src="../img/persona-caminando.gif" alt="">
+      <p class="text-index">¡Bienvenido a nuestra plataforma de proyectos! 🌟<br><br>
+      Aquí descubrirás desarrollos creados con dedicación, creatividad y propósito, pensados para resolver 
+      necesidades reales y facilitar procesos. Cada proyecto refleja esfuerzo, aprendizaje y pasión por la 
+      tecnología. <br>
+      
+      Explora soluciones como INVITROSoft, diseñado para el mundo de la micropropagación vegetal, o 
+      herramientas como Partir.java, creadas para simplificar tareas técnicas con lógica y precisión. <br>
+      Ya seas estudiante, investigador, docente o curioso del desarrollo de software… <br><br>
+      
+      ¡Estás en el lugar correcto! <br>
+      Siéntete libre de conocer, aprender, compartir y, por qué no, inspirarte para crear el tuyo. 🚀 <br>
+
+      ¡Bienvenido a la innovación, bienvenido a nuestros proyectos!
+      
+    </div>
+
+    <h2 id="invitro" style="color: #007832;">Invitrosoft</h2>
+    
+    <section class="proyecto-inicio">
+      <img src="../img/logo-invitro.png" alt="Mango icono"> <!-- Puedes cambiar la imagen -->
+      <div class="descripcion">
+        <p>
+          NVITROSoft es un sistema de software diseñado especialmente para gestionar y controlar el proceso de 
+          micropropagación in vitro de plantas. Su objetivo principal es digitalizar y optimizar el registro de 
+          información en laboratorios que trabajan con cultivos en vidrio. Con esta herramienta, se puede llevar 
+          control de cada fase del cultivo, desde la preparación de reactivos, el uso de medios de cultivo, 
+          el manejo de frascos, hasta el seguimiento de cada lote de plantas durante las diferentes etapas del 
+          proceso. INVITROSoft busca reemplazar los registros manuales (en papel o Excel) por una solución 
+          centralizada, precisa y fácil de usar para técnicos, investigadores y administradores del laboratorio.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion-detalle">
+      <img src="../img/image-invitro.png" alt="Vista productos"> <!-- Imagen editable -->
+      <p>
+       El sistema ha sido desarrollado como una aplicación de escritorio utilizando el lenguaje de programación 
+       Java, con una interfaz gráfica construida con librerías como Swing o Javax, y estilo visual proporcionado 
+       por FlatLaf para darle un diseño moderno. Se apoya en una base de datos MySQL para almacenar todos los
+       datos, incluyendo reactivos, protocolos, fases del cultivo, frascos utilizados, resultados por etapa 
+       y más. La lógica del sistema está organizada en módulos, con un panel principal que permite la navegación
+        entre diferentes funcionalidades como registro de datos, consultas, reportes, y mantenimiento de la
+         información.
+      </p>
+      <p>
+        Actualmente, no es una aplicación web ni móvil, y su interfaz es completamente gráfica, evitando el 
+        uso de consola. Cada panel fue diseñado para cumplir una función específica del laboratorio, e incluso
+        se incluyen validaciones para garantizar la correcta entrada de datos, control de préstamos, 
+        devoluciones de frascos y reportes automáticos.
+      </p>
+    </section>
+
+    <div class="boton-observer-container">
+      <a href="https://www.figma.com/design/2RrHiPTSiJdWTnijUYAYLs/INVITROSOFT.POWER?t=9SXMm0waDCNJRXWw-0">
+      <button class="boton-observer">Observer</button>
+      </a>
+    </div>
+
+
+  <h2 id="table" style="color: #7EA9E1;">Vitroy-table</h2>
+
+    <section class="proyecto-inicio">
+      <img src="../img/logo-table.png" alt="Mango icono"> <!-- Puedes cambiar la imagen -->
+      <div class="descripcion">
+        <p>
+          Este proyecto es una página web interactiva y visualmente atractiva para promocionar y vender 
+          muebles como mesas, sillas, escritorios y espejos. Funciona como un catálogo digital que organiza 
+          los productos por categoría, permitiendo al usuario navegar fácilmente entre ellos mediante un 
+          sistema tipo carrusel. Cada producto tiene su imagen, nombre y una breve descripción. Además, incluye 
+          una sección de contacto con un formulario para que los visitantes puedan enviar su correo electrónico 
+          y número de teléfono, lo cual permite generar interés o ventas directas. Su diseño es moderno y está 
+          pensado para captar la atención del cliente desde cualquier dispositivo.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion-detalle">
+      <img src="../img/imagetable.png" alt="Vista productos"> <!-- Imagen editable -->
+      <p>
+       La página está desarrollada completamente en HTML, CSS y JavaScript puro, sin conexión a bases de 
+       datos ni backend. La navegación entre categorías se hace desde el cliente, cambiando dinámicamente 
+       el contenido visible. Los carruseles de productos permiten desplazarse lateralmente con botones, pero 
+       toda la información está estática y precargada en el código. No se guarda ni procesa información del 
+       usuario, y no tiene sistema de administración ni funcionalidades dinámicas más allá del desplazamiento 
+       de carruseles y cambios de secciones. Aunque su interfaz es completa, el sitio no cuenta con 
+       funcionalidades como carrito de compras, autenticación o almacenamiento de datos, y toda la lógica 
+       es del lado del cliente sin conexión a servidor.
+      </p>
+    </section>
+
+    <div class="boton-observer-container">
+      <a href="project-mini/VITOY-TABLE.HTML">
+      <button class="boton-observer">Observer</button>
+      </a>
+    </div>
+
+    <!--Proyecto 3-->
+    <h2 style="color: #00A324;">Voce-GO</h2>
+
+    <section id="go" class="proyecto-inicio">
+      <img src="../img/mango-verde.png" alt="Mango icono"> <!-- Puedes cambiar la imagen -->
+      <div class="descripcion">
+        <p>
+          Este proyecto es una página web interactiva dedicada a mostrar y administrar productos 
+          derivados del cultivo de mangos. La aplicación permite visualizar una galería tipo carrusel 
+          con distintos productos como variedades de mangos, jugos, pulpas y más. Además, ofrece al 
+          usuario la posibilidad de agregar nuevos productos mediante un formulario que acepta imágenes
+          y descripciones. También incluye un formulario de contacto para que los visitantes puedan dejar
+          su correo electrónico y número de teléfono, facilitando así la comunicación o pedidos. Su objetivo
+          principal es servir como catálogo visual y formulario de contacto para productores o vendedores
+          de mango.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion-detalle">
+      <img src="../img/image-mango.png" alt="Vista productos"> <!-- Imagen editable -->
+      <p>
+        El proyecto está desarrollado en HTML, CSS y JavaScript puro, sin frameworks ni bases de datos. 
+        Tiene una estructura visual moderna con colores suaves y componentes bien diseñados como botones, 
+        formularios y carruseles. El contenido visual se basa en imágenes precargadas y en las que el usuario 
+        puede subir desde su dispositivo. Toda la información agregada (como nuevos productos o datos de contacto) 
+        se maneja de forma temporal en memoria, sin guardarse en un servidor o sistema persistente. Aunque la 
+        interfaz está bien diseñada y es funcional, el sistema es completamente del lado del cliente, por lo que 
+        no hay backend, almacenamiento en la nube ni conexión a bases de datos. La funcionalidad es limitada a 
+        la sesión del navegador, pero es una base sólida para una aplicación web completa.
+      </p>
+    </section>
+
+    <div class="boton-observer-container">
+      <a href="project-mini/voce-go.html">
+        <button class="boton-observer">Observer</button>
+      </a>
+    </div>
+
+    <!--Proyecto 4-->
+    <h2 style="color: #FF6C00;">Repartir</h2>
+
+    <section id="Repartir" class="proyecto-inicio">
+      <img src="../img/logo-vaca.png" alt="Mango icono"> <!-- Puedes cambiar la imagen -->
+      <div class="descripcion">
+        <p >
+          El proyecto partir.java es una herramienta de cálculo diseñada para estimar el valor económico 
+          correspondiente a la mitad del aumento de peso de varios terneros. El usuario ingresa el peso actual 
+          de cada animal, así como el peso con el que llegó inicialmente. Con estos datos, el programa calcula 
+          la ganancia de peso de cada ternero, toma la mitad de esa ganancia como "mi parte" y luego, con base en 
+          un precio ingresado por el usuario, determina el valor monetario correspondiente a esa parte. El objetivo 
+          principal es facilitar el cálculo individual del beneficio que se obtiene por cada animal a partir del 
+          aumento de peso.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion-detalle">
+      <img src="../img/image-vaca.png" alt="Vista productos"> <!-- Imagen editable -->
+      <p>
+       Actualmente, partir.java está desarrollado completamente como una aplicación de consola en lenguaje Java.
+       Utiliza estructuras básicas como arreglos, ciclos for, condicionales simples y entrada/salida mediante Scanner. 
+       Toda la interacción se hace a través de la consola: el usuario introduce la información requerida manualmente, 
+       y los resultados se muestran inmediatamente en pantalla. No cuenta con una interfaz gráfica (GUI), por lo que su 
+       uso depende completamente del entorno de texto. No hay almacenamiento de datos, validación avanzada ni opciones de 
+       exportación, lo que limita su funcionalidad a usos muy puntuales y sencillos. Sin embargo, su lógica está bien 
+       estructurada para dar el siguiente paso hacia una versión más completa y visual.
+      </p>
+    </section>
+
+    <div class="boton-observer-container">
+      <a href="project-mini/repartir.html">
+      <button class="boton-observer">Observer</button>
+      </a>
+    </div>
+    
+  </main>
+
+</body>
+</html>

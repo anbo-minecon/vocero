@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Productos de Cultivo de Mangos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f1efe7; /* soft cream */
+    color: #4a463d; /* dark earthy */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-height: 600px;
+    overflow: hidden;
+  }
+  header {
+    background-color: #34f56498; /* soft green-gray */
+    color: hsl(0, 0%, 0%); /* dark olive */
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 6px rgba(70, 64, 50, 0.15);
+  }
+  .logo{
+    box-shadow: 0 2px 6px rgba(15, 15, 15, 0.15)
+  }
+
+  header img.logo {
+    height: 50px;
+    margin-right: 1rem;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  main {
+    flex: 1;
+    padding: 0.5rem 1rem 1rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* Custom Scrollbar for Main */
+  main::-webkit-scrollbar {
+    width: 8px;
+  }
+  main::-webkit-scrollbar-thumb {
+    background-color: #7ef79c; /* muted olive */
+    border-radius: 4px;
+  }
+  main::-webkit-scrollbar-thumb:hover {
+    background-color: #05fc43; /* darker olive */
+  }
+  main::-webkit-scrollbar-track {
+    background-color: #f1efe7; /* soft cream */
+    border-radius: 4px;
+  }
+
+  h2 {
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    color: #05fc43; /* muted olive */
+  }
+
+  /* Product Carousel Section */
+  .carousel-container {
+    position: relative;
+    background: #ffffffcc;
+    border-radius: 12px;
+    box-shadow: 0px 20px 20px #05fc43;
+    padding: 1rem 3rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    overflow: hidden;
+  }
+  .product-item {
+    flex: 0 0 calc((100% / 3) - 0.66rem);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(115, 103, 74, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .product-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 4px solid #218508;
+  }
+  .product-description {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+    color: #6b654a;
+    flex-grow: 1;
+  }
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #02ff24;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  .carousel-button:disabled {
+    background: #e6ff02;
+    cursor: not-allowed;
+  }
+  .carousel-button.left {
+    left: 8px;
+  }
+  .carousel-button.right {
+    right: 8px;
+  }
+
+  /* Add Product Form */
+  form.add-product {
+    background: #ffffffcc;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(115, 103, 74, 0.2);
+    margin-bottom: 1.75rem;
+  }
+  form.add-product label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #3bca02;
+  }
+  form.add-product input[type="file"],
+  form.add-product input[type="text"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid #d9ff05;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: #fbf9f2;
+    color: #e4fd04;
+  }
+  form.add-product input[type="file"]:focus,
+  form.add-product input[type="text"]:focus {
+    outline: none;
+    border-color: #dbf305;
+    box-shadow: 0 0 8px #e9fa03;
+  }
+  form.add-product button {
+    background-color: #faea045d;
+    color: #7e8603;
+    border: 2px solid #dbf305;
+    padding: 0.6rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  form.add-product button:hover {
+    background-color: #faea04;
+  }
+
+  .main-content {
+    display: flex;
+     
+    flex-direction: column;
+
+    overflow-y: auto;
+  }
+
+  /* Contact section */
+  section.contact {
+    background: #ffffffcc;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(115, 103, 74, 0.2);
+    margin-bottom: 0.8rem;
+  }
+  section.contact h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #05fc43;
+    font-weight: 700;
+    text-align: center;
+  }
+  section.contact label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #039928;
+  }
+  section.contact input[type="email"],
+  section.contact input[type="tel"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid #def704;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fbf9f2;
+    color: #020202;
+  }
+  section.contact input[type="email"]:focus,
+  section.contact input[type="tel"]:focus {
+    outline: none;
+    border-color: #f7df04;
+    box-shadow: 0 0 8px #f7df04;
+  }
+  section.contact button {
+    width: 100%;
+    background-color: #faea045d;
+    color: #7e8603;
+    border:#dbf305 solid 2px;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
+  section.contact button:hover {
+    background-color: #73674a;
+  }
+  #thankyou {
+    display: none;
+    font-weight: 700;
+    color: #436222;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  /* Responsive for mobile */
+  @media (max-width: 350px) {
+    body {
+      max-height: 600px;
+    }
+    main {
+      max-width: 350px;
+      padding: 0.5rem;
+    }
+    header img.logo {
+      height: 40px;
+      margin-right: 0.5rem;
+    }
+    header h1 {
+      font-size: 1.2rem;
+    }
+    .product-item {
+      flex: 0 0 32%;
+    }
+    .product-image {
+      height: 100px;
+    }
+    .carousel-container {
+      padding: 1rem 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <img class="logo" src="mango.png" alt="Logo Mangos" />
+  <h1>Cultivos de Mangos - Productos</h1>
+</header>
+<main class="main-content">
+  <section>
+    <h2>Productos</h2>
+    <div class="carousel-container">
+      <button class="carousel-button left" id="prevBtn" aria-label="Anterior producto" disabled>&lt;</button>
+      <div class="carousel" id="carousel"></div>
+      <button class="carousel-button right" id="nextBtn" aria-label="Siguiente producto">&gt;</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agregar Producto de Mango</h2>
+    <form class="add-product" id="addProductForm" novalidate>
+      <label for="imageFile">Selecciona imagen del producto</label>
+      <input type="file" id="imageFile" name="imageFile" accept="image/*" required />
+      <label for="description">Descripción del Producto</label>
+      <input type="text" id="description" name="description" placeholder="Descripción corta" required />
+      <button type="submit">Agregar Producto</button>
+    </form>
+  </section>
+
+  <section class="contact">
+    <h3>Déjanos tu contacto</h3>
+    <form id="contactForm" novalidate>
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
+      <label for="phone">Número Celular</label>
+      <input type="tel" id="phone" name="phone" placeholder="+52 123 456 7890" pattern="^\\+?\\d{7,15}$" required />
+      <button type="submit">Enviar</button>
+      <div id="thankyou">¡Gracias por contactarnos! Te responderemos pronto.</div>
+    </form>
+  </section>
+</main>
+<script>
+  const productsData = [
+    {
+      imageUrl: 'https://www.mango.org/wp-content/uploads/2024/06/plu-honey-mango_v2.png',
+      description: 'Mango Ataulfo: Mango dulce y pequeño, con pulpa cremosa y muy jugosa'
+    },
+    {
+      imageUrl: 'https://cdn.colombia.com/gastronomia/2011/08/03/jugo-de-mango-1610-1.gif',
+      description: 'Jugo Natural de Mango: Refrescante jugo hecho de mangos maduros, puro y sin aditivos'
+    },
+    {
+      imageUrl: 'https://st3.depositphotos.com/14007198/19158/i/450/depositphotos_191584224-stock-photo-isolated-juicy-yellow-thai-mango.jpg',
+      description: 'Mango en Rodajas: Rodajas frescas listas para consumir o para cocinar postres'
+    },
+    {
+      imageUrl: 'https://www.transfrut.cl/imagenes%20frutas/fotos%20chicas%20pagina%20productos/mango.jpg',
+      description: 'Mango Chileno: Popular por su dulce aroma y sabor robusto, ideal para consumo fresco'
+    },
+    {
+      imageUrl: 'https://exitocol.vteximg.com.br/arquivos/ids/25417680/Pulpa-Mango-Congelada-250-gr-3225445_a.jpg?v=638657273499500000',
+      description: 'Pulpa de Mango Congelada: Práctica y lista para preparar batidos, postres o cocina creativa'
+    },
+    {
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Mango_TommyAtkins04_Asit.jpg/1200px-Mango_TommyAtkins04_Asit.jpg',
+      description: 'Mango Tommy: Variedad grande, pulpa firme y sabor ligeramente ácido, perfecta para ensaladas'
+    },
+    {
+      imageUrl: 'https://vivecol.com.co/wp-content/uploads/2024/09/image33-1.jpeg',
+      description: 'Mango Biche: Mangos verdes para preparar encurtidos y salsas con un sabor fresco y ácido'
+    }
+  ];
+
+  const carousel = document.getElementById('carousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const addProductForm = document.getElementById('addProductForm');
+  const imageFileInput = document.getElementById('imageFile');
+  const contactForm = document.getElementById('contactForm');
+  const thankyouMessage = document.getElementById('thankyou');
+
+  let startIndex = 0;
+  const visibleCount = 3;
+
+  function updateCarousel() {
+    carousel.innerHTML = '';
+
+    // Only slice products array based on startIndex and visibleCount
+    const visibleProducts = productsData.slice(startIndex, startIndex + visibleCount);
+
+    visibleProducts.forEach(({imageUrl, description}) => {
+      const container = document.createElement('article');
+      container.classList.add('product-item');
+
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.alt = description;
+      img.classList.add('product-image');
+
+      const desc = document.createElement('div');
+      desc.classList.add('product-description');
+      desc.textContent = description;
+
+      container.appendChild(img);
+      container.appendChild(desc);
+
+      carousel.appendChild(container);
+    });
+
+    // Disable prevBtn if at start, disable nextBtn if at end
+    prevBtn.disabled = startIndex === 0;
+    nextBtn.disabled = startIndex + visibleCount >= productsData.length;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (startIndex > 0) {
+      startIndex -= visibleCount;
+      if (startIndex < 0) startIndex = 0;
+      updateCarousel();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (startIndex + visibleCount < productsData.length) {
+      startIndex += visibleCount;
+      if (startIndex + visibleCount > productsData.length) {
+        startIndex = productsData.length - visibleCount;
+        if (startIndex < 0) startIndex = 0;
+      }
+      updateCarousel();
+    }
+  });
+
+  addProductForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const file = imageFileInput.files[0];
+    const description = addProductForm.description.value.trim();
+
+    if (!file) {
+      alert('Por favor, selecciona una imagen para el producto.');
+      return;
+    }
+    if (!description) {
+      alert('Por favor, ingresa una descripción para el producto.');
+      return;
+    }
+
+    // Validate file is image
+    if (!file.type.startsWith('image/')) {
+      alert('El archivo seleccionado no es una imagen válida.');
+      return;
+    }
+
+    // Read file as data URL
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const imageUrl = event.target.result;
+      productsData.push({ imageUrl, description });
+
+      // Move to last page where new product is shown if needed
+      if (productsData.length > visibleCount) {
+        startIndex = productsData.length - visibleCount;
+        if (startIndex < 0) startIndex = 0;
+      } else {
+        startIndex = 0;
+      }
+      updateCarousel();
+      addProductForm.reset();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const emailValid = contactForm.email.checkValidity();
+    const phoneValid = contactForm.phone.checkValidity();
+
+    if (!emailValid || !phoneValid) {
+      alert('Por favor, ingresa un correo y número válidos.');
+      return;
+    }
+
+    thankyouMessage.style.display = 'block';
+    contactForm.reset();
+  });
+
+  // Initial rendering on page load
+  updateCarousel();
+</script>
+</body>
+</html>
+

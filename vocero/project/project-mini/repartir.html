@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Parte de Terneros</title>
+  <link rel="icon" href="../../img/logo-vaca.ico" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffe0b2; /* Fondo anaranjado claro */
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #e65100; /* Naranja fuerte */
+    }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
+
+    .form-section label {
+      font-weight: bold;
+      color: #bf360c;
+    }
+
+    .form-section input {
+      padding: 8px;
+      margin-top: 3px;
+      margin-bottom: 10px;
+      width: 100%;
+      border: 1px solid #ffab91;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #f57c00; /* Botón naranja medio */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #ef6c00; /* Naranja más oscuro al pasar el mouse */
+    }
+
+    #formularioTerneros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .ternero {
+      background: #fff3e0;
+      padding: 10px;
+      width: 250px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ffe0b2;
+    }
+
+    .ternero h3 {
+      color: #e65100;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .ternero label {
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #bf360c;
+    }
+
+    .ternero input {
+      padding: 6px;
+      margin-bottom: 10px;
+      border: 1px solid #ffccbc;
+      border-radius: 4px;
+    }
+
+    #resultados {
+      margin-top: 30px;
+      background-color: #ffe0b2;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ffcc80;
+    }
+
+    #resultados h2, #resultados h3 {
+      color: #d84315;
+    }
+  </style>
+</head>
+<body>
+  <h1>Repartir</h1>  
+  <h2>Bienvenido - Calcular Parte de Terneros</h2>
+
+  <div class="form-section">
+    <label for="cantidad">Cantidad de terneros:</label>
+    <input type="number" id="cantidad" min="1">
+
+    <label for="precioGlobal">Precio actual por kg:</label>
+    <input type="number" id="precioGlobal" min="1">
+
+    <button onclick="crearFormulario()">Aceptar</button>
+  </div>
+
+  <form id="formularioTerneros"></form>
+
+  <div id="resultados"></div>
+
+  <script>
+    function crearFormulario() {
+      const cantidad = parseInt(document.getElementById("cantidad").value);
+      const precioGlobal = parseInt(document.getElementById("precioGlobal").value);
+      const contenedor = document.getElementById("formularioTerneros");
+      contenedor.innerHTML = "";
+
+      if (isNaN(cantidad) || cantidad <= 0 || isNaN(precioGlobal) || precioGlobal <= 0) {
+        alert("Por favor ingresa valores válidos.");
+        return;
+      }
+
+      for (let i = 0; i < cantidad; i++) {
+        const div = document.createElement("div");
+        div.classList.add("ternero");
+        div.innerHTML = `
+          <h3>Ternero ${i + 1}</h3>
+          <label>Peso actual (kg):
+            <input type="number" name="pesoActual" required>
+          </label>
+          <label>Peso con el que vino (kg):
+            <input type="number" name="pesoLlegada" required>
+          </label>
+        `;
+        contenedor.appendChild(div);
+      }
+
+      const boton = document.createElement("button");
+      boton.textContent = "Calcular Partes";
+      boton.type = "button";
+      boton.onclick = () => calcularPartes(precioGlobal);
+      contenedor.appendChild(boton);
+    }
+
+    function calcularPartes(precio) {
+      const terneros = document.querySelectorAll(".ternero");
+      const resultados = document.getElementById("resultados");
+      resultados.innerHTML = "<h2>Resultados:</h2>";
+
+      let totalKilos = 0;
+      let totalDinero = 0;
+
+      terneros.forEach((ternero, index) => {
+        const peso = parseInt(ternero.querySelectorAll("input")[0].value);
+        const llegada = parseInt(ternero.querySelectorAll("input")[1].value);
+
+        const diferencia = peso - llegada;
+        const miParte = Math.floor(diferencia / 2);
+        const valorParte = miParte * precio;
+
+        totalKilos += miParte;
+        totalDinero += valorParte;
+
+        resultados.innerHTML += `
+          <p>
+            <strong>Ternero ${index + 1}:</strong><br>
+            Peso actual: ${peso} kg<br>
+            Peso de llegada: ${llegada} kg<br>
+            Diferencia: ${diferencia} kg<br>
+            Mi parte: ${miParte} kg<br>
+            Valor de mi parte: $${valorParte}
+          </p>
+          <hr>
+        `;
+      });
+
+      resultados.innerHTML += `
+        <h3>Total acumulado:</h3>
+        <p><strong>Kilos:</strong> ${totalKilos} kg<br>
+        <strong>Valor total:</strong> $${totalDinero}</p>
+      `;
+    }
+  </script>
+</body>
+</html>

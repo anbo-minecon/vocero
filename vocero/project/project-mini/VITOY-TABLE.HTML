@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ditrox-table - Venta de Muebles</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #d9e8f5;
+        margin: 0;
+        padding: 0;
+        color: #2c3e50;
+    }
+    header {
+        background: linear-gradient(135deg, #a8c7e7 0%, #7ea9e1 100%);
+        padding: 30px 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        position: relative;
+        overflow: hidden;
+    }
+    header::before, header::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.3;
+        background: #fff;
+        top: -50px;
+        width: 150px;
+        height: 150px;
+        z-index: 0;
+    }
+    header::after {
+        right: -70px;
+        top: 20px;
+        width: 200px;
+        height: 200px;
+    }
+    header::before {
+        left: -70px;
+        top: 20px;
+        width: 200px;
+        height: 200px;
+    }
+    main {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px 60px;
+    }
+    h2 {
+        color: #3a5f9e;
+        border-bottom: 3px solid #7ea9e1;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        font-weight: 600;
+        font-size: 2rem;
+    }
+    .furniture-item img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+    }
+    /* Category menu */
+    .category-menu {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    .category-menu button {
+        background: #e6f0fa;
+        border: 2px solid #7ea9e1;
+        border-radius: 25px;
+        padding: 10px 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    .category-menu button.active,
+    .category-menu button:hover {
+        background: #7ea9e1;
+        color: white;
+        border-color: #5a82c7;
+    }
+    /* Carousel container */
+    .carousel-container {
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+    }
+    .carousel {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+    }
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+    .furniture-item {
+        background: #e6f0fa;
+        border-radius: 15px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        padding: 15px;
+        min-width: 250px;
+        flex-shrink: 0;
+        text-align: center;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .furniture-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    }
+    .furniture-item img {
+        max-width: 100%;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .furniture-item h3 {
+        margin: 0 0 8px;
+        color: #2c3e50;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    .furniture-item p {
+        font-size: 0.95rem;
+        color: #4a5a7a;
+        line-height: 1.4;
+    }
+    /* Arrows */
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #7ea9e1;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 8px 14px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: background 0.3s ease;
+        user-select: none;
+        z-index: 10;
+    }
+    .arrow:hover {
+        background: #5a82c7;
+    }
+    .arrow-left {
+        left: 5px;
+    }
+    .arrow-right {
+        right: 5px;
+    }
+    /* Contact section */
+    .contact-info {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #1b2a41;
+        margin-bottom: 25px;
+    }
+    form {
+        background: #e6f0fa;
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 25px 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+    input[type="email"],
+    input[type="tel"] {
+        width: 80%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 2px solid #7ea9e1;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+        border-color: #3a5f9e;
+        outline: none;
+    }
+    input[type="submit"] {
+        background: #7ea9e1;
+        color: white;
+        border: none;
+        padding: 15px;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: 700;
+        transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background: #5a82c7;
+    }
+    footer {
+        text-align: center;
+        padding: 20px 10px;
+        background: #a8c7e7;
+        color: #1b2a41;
+        font-weight: 600;
+        font-size: 1rem;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        max-width: 1000px;
+        margin: 0 auto 40px;
+    }
+    
+</style>
+</head>
+<body>
+<header>
+    ditrox-table
+</header>
+<main>
+    <nav class="category-menu" aria-label="Categorías de muebles">
+        <button class="active" data-category="mesas" aria-controls="mesas" aria-selected="true">Mesas</button>
+        <button data-category="sillas" aria-controls="sillas" aria-selected="false">Sillas</button>
+        <button data-category="escritorios" aria-controls="escritorios" aria-selected="false">Escritorios</button>
+        <button data-category="espejos" aria-controls="espejos" aria-selected="false">Espejos</button>
+    </nav>
+
+    <section id="mesas" class="carousel-section" aria-label="Mesas">
+        <h2>Mesas</h2>
+        <div class="carousel-container">
+            <button class="arrow arrow-left" aria-label="Desplazar mesas a la izquierda">&#8592;</button>
+            <div class="carousel" tabindex="0">
+                <div class="furniture-item">
+                    <img src="https://tugocolombia.vtexassets.com/arquivos/ids/292108/2008581.jpg?v=638513909192700000" id="images" alt="Mesa de Comedor" />
+                    <h3>Mesa de Comedor</h3>
+                    <p>Perfecta para reuniones familiares y cenas inolvidables.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400&q=80" id="images" alt="Mesa de Café" />
+                    <h3>Mesa de Café</h3>
+                    <p>Ideal para tu sala de estar con estilo moderno.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://m.media-amazon.com/images/I/71zLVZukmQL._AC_UF894,1000_QL80_.jpg" id="images" alt="Mesa Auxiliar" />
+                    <h3>Mesa Auxiliar</h3>
+                    <p>Funcional y elegante para cualquier espacio.</p>
+                </div>
+            </div>
+            <button class="arrow arrow-right" aria-label="Desplazar mesas a la derecha">&#8594;</button>
+        </div>
+    </section>
+
+    <section id="sillas" class="carousel-section" aria-label="Sillas" hidden>
+        <h2>Sillas</h2>
+        <div class="carousel-container">
+            <button class="arrow arrow-left" aria-label="Desplazar sillas a la izquierda">&#8592;</button>
+            <div class="carousel" tabindex="0">
+                <div class="furniture-item">
+                    <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/118146624_01/w=1500,h=1500,fit=pad" alt="Silla Moderna" />
+                    <h3>Silla Moderna</h3>
+                    <p>Diseño elegante y cómodo para tu hogar u oficina.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Silla de Oficina" />
+                    <h3>Silla de Oficina</h3>
+                    <p>Ergonómica y ajustable para largas jornadas de trabajo.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaCO/881999756_1/w=500,h=500,fit=pad" alt="Silla de Comedor" />
+                    <h3>Silla de Comedor</h3>
+                    <p>Perfecta para complementar tu mesa de comedor.</p>
+                </div>
+            </div>
+            <button class="arrow arrow-right" aria-label="Desplazar sillas a la derecha">&#8594;</button>
+        </div>
+    </section>
+
+    <section id="escritorios" class="carousel-section" aria-label="Escritorios" hidden>
+        <h2>Escritorios</h2>
+        <div class="carousel-container">
+            <button class="arrow arrow-left" aria-label="Desplazar escritorios a la izquierda">&#8592;</button>
+            <div class="carousel" tabindex="0">
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400&q=80" alt="Escritorio Moderno" />
+                    <h3>Escritorio Moderno</h3>
+                    <p>Diseño funcional para tu espacio de trabajo.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Escritorio de Madera" />
+                    <h3>Escritorio de Madera</h3>
+                    <p>Elegante y resistente para cualquier oficina.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80" alt="Escritorio Compacto" />
+                    <h3>Escritorio Compacto</h3>
+                    <p>Perfecto para espacios pequeños y funcionales.</p>
+                </div>
+            </div>
+            <button class="arrow arrow-right" aria-label="Desplazar escritorios a la derecha">&#8594;</button>
+        </div>
+    </section>
+
+    <section id="espejos" class="carousel-section" aria-label="Espejos" hidden>
+        <h2>Espejos</h2>
+        <div class="carousel-container">
+            <button class="arrow arrow-left" aria-label="Desplazar espejos a la izquierda">&#8592;</button>
+            <div class="carousel" tabindex="0">
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80" alt="Espejo Redondo" />
+                    <h3>Espejo Redondo</h3>
+                    <p>Diseño moderno para cualquier habitación.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Espejo de Pared" />
+                    <h3>Espejo de Pared</h3>
+                    <p>Perfecto para decorar y ampliar espacios.</p>
+                </div>
+                <div class="furniture-item">
+                    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400&q=80" alt="Espejo Vintage" />
+                    <h3>Espejo Vintage</h3>
+                    <p>Estilo clásico con un toque elegante.</p>
+                </div>
+            </div>
+            <button class="arrow arrow-right" aria-label="Desplazar espejos a la derecha">&#8594;</button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Contacto</h2>
+        <p class="contact-info">Puedes contactarnos al correo: contacto@ditrox-table.com o al teléfono: +34 600 123 456</p>
+        <form>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required />
+            <label for="phone">Teléfono celular:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+34 600 123 456" required />
+            <input type="submit" value="Enviar" />
+        </form>
+    </section>
+</main>
+<footer>
+    &copy; 2024 ditrox-table. Todos los derechos reservados.
+</footer>
+<script>
+    // Category menu buttons
+    const categoryButtons = document.querySelectorAll('.category-menu button');
+    const carouselSections = document.querySelectorAll('.carousel-section');
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active from all buttons
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            // Hide all carousel sections
+            carouselSections.forEach(section => section.hidden = true);
+
+            // Activate clicked button and show corresponding section
+            button.classList.add('active');
+            button.setAttribute('aria-selected', 'true');
+            const category = button.getAttribute('data-category');
+            document.getElementById(category).hidden = false;
+        });
+    });
+
+    // Carousel arrow navigation
+    const carousels = document.querySelectorAll('.carousel-container');
+
+    carousels.forEach(container => {
+        const carousel = container.querySelector('.carousel');
+        const leftArrow = container.querySelector('.arrow-left');
+        const rightArrow = container.querySelector('.arrow-right');
+
+        leftArrow.addEventListener('click', () => {
+            carousel.scrollBy({ left: -260, behavior: 'smooth' });
+        });
+        rightArrow.addEventListener('click', () => {
+            carousel.scrollBy({ left: 260, behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
