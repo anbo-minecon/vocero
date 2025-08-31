@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Portafolio</title>
+</head>
+<body>
+    <header class="header">
+
+            <h1>Adanies B</h1>
+
+        <nav class="navegacion">
+            <ul class="enlaces">
+                <li class="enlaces-ul"><a href="#Home">Home</a></li>
+                <li class="enlaces-ul"><a href="#trabajos">Experiencia</a></li>
+                <li class="enlaces-ul"><a href="#projectos">Cualidades</a></li>
+                <li class="enlaces-ul"><a href="#estudios">Proyectos</a></li>
+                <li class="enlaces-ul"><a href="#contacto" class="ultimo">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="introduccion" id="Home">
+        <div class="texto-introduccion">
+            <h3>Hola, soy Adanies Basilio</h3>
+            <p>Soy programador con experiencia creando sistemas como gestión de parqueaderos, bibliotecas y proyectos de micropropagación. Me gusta aprender, resolver problemas y convertir ideas en software funcional. Bienvenido a mi portafolio.</p>
+
+        </div>
+        <div class="foto-introduccion">
+            <img src="img/nocilas.jpg" alt="">
+        </div>
+    </section>
+
+    <section class="Cualidades" id="trabajos">
+        <div class="texto-cualidades">
+            <div class="cualidades-introduccion">
+                <h3>Trabajos</h3>
+                <p>A lo largo de mi proceso he trabajado en proyectos de programación y desarrollo de software, aplicando buenas prácticas y buscando soluciones simples pero efectivas. Aquí algunas de mis cualidades:</p>
+
+            </div>
+        </div>
+        <div class="cualidades-lista">
+            <div class="cualidad">
+                <img src="img/entrega.png" alt="">
+                <h3>Documentador</h3>
+                <p>Me gusta dejar todo claro. He preparado documentación técnica y descripciones que hacen más fácil entender un sistema.</p>
+            </div>
+            <div class="cualidad">
+                <img src="img/entrega.png" alt="">
+                <h3>Diseñador de Interfaces</h3>
+                <p>He trabajado con HTML, CSS y JavaScript para dar vida a pantallas intuitivas, desde formularios hasta paneles de control.</p>
+            </div>
+            <div class="cualidad">
+                <img src="img/entrega.png" alt="">
+                <h3>Desarrollador</h3>
+                <p>Programo principalmente en Java, creando sistemas de escritorio con interfaces gráficas y también soluciones de backend para proyectos reales.</p>
+            </div>
+            <div class="cualidad">
+                <img src="img/entrega.png" alt="">
+               <h3>Gestor de Proyectos</h3>
+    <p>He trabajado organizando módulos como reportes, préstamos y devoluciones, y aplicando metodologías como Scrum para estructurar el trabajo en equipo.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="proyectos" id="projectos">
+        <div class="texto-proyectos">
+            <h3 class="subtitulos">Proyectos</h3>
+            <p class="parrafo">Estos son algunos proyectos que he desarrollado o en los que estoy trabajando. Todos me han ayudado a crecer como programador y a reforzar mis conocimientos.</p>
+        </div>
+        <div class="lista-proyectos">
+            <div class="proyecto">
+                <img src="img/parqueadero.jpg" alt="">
+                <h4>Sistema de Gestión de Parqueadero</h4>
+                <p>Un software en Java con interfaz gráfica, donde se controlan entradas, salidas, pagos y reportes. Incluye administración de zonas y categorías de vehículos.</p>
+                <button type="submit">Ver más</button>
+            </div>
+            <div class="proyecto">
+                <img src="img/biblioteca.jpg" alt="">
+                <h4>Sistema de Biblioteca</h4>
+                <p>Un módulo de préstamos y devoluciones de libros con generación de reportes. Se centra en la simplicidad: solo con ID de usuario y libro.</p>
+                <button type="submit">Ver más</button>
+            </div>
+            <div class="proyecto">
+                <img src="img/logo.png" alt="">
+                <h4>Sistema de Micropropagación</h4>
+                <p>Un proyecto académico para gestionar cultivos in vitro. Maneja reactivos, fases y reportes con un modelo de base de datos bien estructurado.</p>
+                <button type="submit">Ver más</button>
+            </div>
+            <div class="proyecto">
+                <img src="img/Pro-Stock-Tool.PNG" alt="">
+                <h4>Módulo de Ferretería</h4>
+                <p>Desarrollo de un módulo de devoluciones a proveedores, estructurado con metodología Scrum: historias de usuario, criterios de aceptación y tareas de sprint.</p>
+                <button type="submit">Ver más</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="estudios" id="estudios">
+        <h3 class="subtitulos">Estudios</h3>
+        <p class="parrafo">Me he formado en instituciones técnicas y programas que me han dado bases en programación, además de aprender de manera autodidacta con proyectos propios.</p>
+
+        <!-- Incluye el script de model-viewer para mostrar modelos .glb -->
+        <div class="div-estudios">
+            <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+            <div class="sena">
+                <model-viewer id="modelo3d" src="img/hitem3d.glb" class="foto-introduccion" alt="Modelo 3D" auto-rotate camera-controls style="width: 300px; height: 300px;"></model-viewer>
+                <script>
+                    // Espera a que el modelo esté cargado
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const modelViewer = document.getElementById('modelo3d');
+                        modelViewer.addEventListener('load', () => {
+                            // Cambia el color del primer material encontrado
+                            const material = modelViewer.model && modelViewer.model.materials[0];
+                            if (material) {
+                                material.pbrMetallicRoughness.setBaseColorFactor([138/255, 43/255, 227/255, 1]); // RGB + Alpha
+                            }
+                        });
+                    });
+                </script>
+            </div>
+            <div class="lugar-estudio">
+                <div class="info-sena estudio-info">
+                    <div class="info">
+                        <h4>SENA</h4>
+                        <p>Fortalecí mis conocimientos en programación y desarrollo de software.</p>
+                    </div>
+                    <div class="img-info">
+                        <img src="img/logosena.png" alt="">
+                    </div>
+                </div>
+
+                <div class="info-jovenes estudio-info">
+                    <div class="img-info">
+                        <img src="img/jovenesProgramadores.png" alt="">
+                    </div>
+                    <div class="info">
+                        <h4>Jovenes Programadores</h4>
+                        <p>Un programa que me ayudó a ampliar mis habilidades en lógica y tecnología.</p>
+                    </div>
+                </div>
+
+                <div class="info-inetec estudio-info">
+                    <div class="info">
+                        <h4>Inetec</h4>
+                        <p>Formación que me aportó disciplina y bases para mi camino en secundaria.</p>
+                    </div>
+                    <div class="img-info">
+                        <img src="https://www.nuevagranada-magdalena.gov.co/SiteAssets/V2/images/logoAlcaldia.png" alt="">
+                    </div>
+                </div>
+
+                <div class="info-inslurva estudio-info">
+                    <div class="img-info">
+                        <img src="https://www.edusac3.co/iepascuala/escudo.png" alt="">
+                    </div>
+                    <div class="info">
+                        <h4>Inslurva</h4>
+                        <p>Mi formación de base, donde inicié mis primeros pasos académicos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <div class="contenido-contacto">
+            <div class="info-contacto">
+                <h3>Contactos</h3>
+                <p>Si quieres hablar conmigo sobre proyectos de software, ideas de desarrollo o colaborar en algo nuevo, aquí te dejo mis datos. Estoy siempre abierto a aprender y compartir.</p>
+                <div class="info-linea">
+                    <div>
+                        <img src="img/email.png" alt="Correo" class="icono-contacto">
+                    </div>
+                    <div>
+                        <span>consultas@correo.com</span>
+                    </div>
+                </div>
+                <div class="info-linea">
+                    <div>
+                        <img src="img/ubicacion.png" alt="Ubicación" class="icono-contacto">
+                    </div>
+                    <div>
+                        <span>Av.16 de julio Nro. 8 - Ciudad - País</span>
+                    </div>
+                </div>
+                <div class="info-linea">
+                    <div>
+                        <img src="img/celular.png" alt="Teléfono" class="icono-contacto">
+                    </div>
+                    <div>
+                        <span>(01) 3453 -654<br>(01) 3233 -452</span>
+                    </div>
+                </div>
+                <div class="redes-contacto">
+                    <a href="https://www.facebook.com/adaniesdejesus.basilioospino" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+                    <a href="https://wa.me/573226908514" target="_blank"><img src="img/whassapt.png" alt="WhatsApp"></a>
+                    <a href="https://www.instagram.com/anbo_minecon/" target="_blank"><img src="img/insta.png" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="form-contacto">
+                <form action="" method="post">
+                    <div class="contenido-form">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe tu mensaje"></textarea>
+                        <button type="submit">Enviar</button>
+                        <span id="mensaje-exito" style="display:none;color:green;">¡Mensaje enviado!</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pie-pagina">
+    <div class="footer-contenido">
+        <div class="footer-logo">
+            <img src="img/nocilas.jpg" alt="Logo" />
+            <span>Adanies B</span>
+        </div>
+        
+        <div class="footer-redes">
+            <a href="https://www.facebook.com/adaniesdejesus.basilioospino" target="_blank" title="Facebook">
+                <img src="img/github.png" alt="Facebook" />
+            </a>
+            <a href="##" target="_blank" title="WhatsApp">
+                <img src="img/discord.png" alt="WhatsApp" />
+            </a>
+            <a href="https://www.instagram.com/anbo_minecon/" target="_blank" title="Instagram">
+                <img src="img/e-mail.png" alt="Instagram" />
+            </a>
+        </div>
+    </div>
+    <div class="footer-copy">
+        &copy; 2025 Adanies B. Todos los derechos reservados.
+    </div>
+</footer>
+</body>
+</html>
